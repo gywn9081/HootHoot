@@ -1,8 +1,8 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-namespace PhysicsButGood{
-public class PlanePhysics : MonoBehaviour{
+using System.Collections.Generic;
+using System;
+public class PlanePhysics : MonoBehaviour
+{
     public class LinearInterpolationTree{
         private List<(float, float)> tree;
         private int treeSize;
@@ -143,5 +143,4 @@ public class PlanePhysics : MonoBehaviour{
         return new Vector3(pitch * MaxPitchSpeed * mass, yaw * MaxYawSpeed, roll * MaxRollSpeed);
     }
 
-}
 }

@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using PhysicsButGood;
-using UnityEngine.UIElements;
 
 public class testScript : MonoBehaviour
 {
@@ -15,8 +13,7 @@ public class testScript : MonoBehaviour
     [SerializeField] InputActionReference grabActionLeft;
     [SerializeField] InputActionReference grabActionRight;
 
-    Rigidbody Plane = new Rigidbody();
-    PlanePhysics physics = new PlanePhysics();
+    PlanePhysics planeScript;
 
 
 
@@ -38,7 +35,7 @@ public class testScript : MonoBehaviour
 
     void Update()
     {
-        Plane.AddForce(physics.getForceVector(0, 1000, 100000, 1, 2000));
+        // Plane.AddForce(physics.getForceVector(0, 1000, 100000, 1, 2000));
         Debug.Log($"{leftHand.action.ReadValue<Vector3>()}, {rightHand.action.ReadValue<Vector3>()}, {headset.action.ReadValue<Vector3>()}");
 
         rightHandVector = rightHand.action.ReadValue<Vector3>();
