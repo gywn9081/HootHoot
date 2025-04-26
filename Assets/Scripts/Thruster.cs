@@ -9,7 +9,7 @@ public class Thruster : MonoBehaviour
     // where it then locks to 1 (afterburners)
     
     // Update is called once per frame
-    void LateUpdate()
+    public void UpdateThruster()
     {
         Vector3 tempPosition = new Vector3(baseTransform.position.x, baseTransform.position.y + 1.2f, transform.position.z);
         tempPosition.z = Mathf.Clamp(tempPosition.z, baseTransform.position.z - baseTransformLength, baseTransform.position.z + baseTransformLength);

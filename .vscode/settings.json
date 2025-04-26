@@ -58,7 +58,7 @@
     },
     "dotnet.defaultSolution": "HootHoot.sln",
     "github.copilot.enable": {
-        "*": false,
+        "*": true,
         "plaintext": false,
         "markdown": false,
         "scminput": false

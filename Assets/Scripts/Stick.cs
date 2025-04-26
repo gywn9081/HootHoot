@@ -12,7 +12,7 @@ public class Stick : MonoBehaviour
     //315-360, 0-45
 
     // Update is called once per frame
-    void LateUpdate()
+    public void UpdateStick()
     {
         Quaternion tempRotation = transform.localRotation;
 

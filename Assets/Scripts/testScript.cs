@@ -1,0 +1,57 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class testScript : MonoBehaviour
+{
+    [SerializeField] InputActionReference leftHand;
+    [SerializeField] InputActionReference rightHand;
+    [SerializeField] InputActionReference headset;
+
+    [SerializeField] InputActionReference leftHandQuaternion;
+    [SerializeField] InputActionReference rightHandQuaternion;
+
+    [SerializeField] InputActionReference grabActionLeft;
+    [SerializeField] InputActionReference grabActionRight;
+
+    Vector3 rightHandVector;
+    Vector3 leftHandVector;
+
+    Quaternion rightHandRotation;
+    Quaternion leftHandRotation;
+
+    public Stick stickScript;
+    public Thruster thrusterScript;
+
+
+
+    float tolerance = 2f;
+
+    [SerializeField] Transform stickTransform;
+    [SerializeField] Transform thrusterTransform;
+
+    void Update()
+    {
+        Debug.Log($"{leftHand.action.ReadValue<Vector3>()}, {rightHand.action.ReadValue<Vector3>()}, {headset.action.ReadValue<Vector3>()}");
+
+        rightHandVector = rightHand.action.ReadValue<Vector3>();
+        leftHandVector = leftHand.action.ReadValue<Vector3>();
+
+        rightHandRotation = rightHandQuaternion.action.ReadValue<Quaternion>();
+        leftHandRotation = leftHandQuaternion.action.ReadValue<Quaternion>();
+
+        if((leftHandVector.x - stickTransform.position.x) < tolerance && (leftHandVector.y - stickTransform.position.y) < tolerance && (leftHandVector.z - stickTransform.position.z) < tolerance && grabActionLeft.action.ReadValue<bool>())
+        {
+            stickTransform.position = new Vector3(leftHandVector.x, leftHandVector.y, leftHandVector.z);
+            stickTransform.rotation = leftHandRotation;
+        }
+        else if((rightHandVector.x - stickTransform.position.x) < tolerance && (rightHandVector.y - stickTransform.position.y) < tolerance && (rightHandVector.z - stickTransform.position.z) < tolerance && grabActionRight.action.ReadValue<bool>())
+        {
+            stickTransform.position = new Vector3(rightHandVector.x, rightHandVector.y, rightHandVector.z);
+            stickTransform.rotation = rightHandRotation;
+        }
+
+        stickScript.UpdateStick();
+
+        thrusterScript.UpdateThruster();
+    }
+}
