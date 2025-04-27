@@ -8,6 +8,7 @@ public class FlapWings : MonoBehaviour
     [SerializeField] InputActionReference rightHand;
 
     [SerializeField] float thrustConstant = 10f;
+    [SerializeField] float gravityConstant = 5f;
 
     [SerializeField] Rigidbody rb;
     Vector3 rightHandVector;
@@ -55,8 +56,12 @@ public class FlapWings : MonoBehaviour
             toApplyLeft.z = (leftHandVector.z - currentVectorLeft.z) * thrustConstant;
         }
 
-        rb.AddForceAtPosition(transform.TransformDirection(toApplyRight), transform.TransformDirection(new Vector3(0.5f, 0, 0)), ForceMode.Force);
-        rb.AddForceAtPosition(transform.TransformDirection(toApplyLeft), transform.TransformDirection(new Vector3(-0.5f, 0, 0)), ForceMode.Force);
+        Vector2 distance = new Vector2(currentVectorRight.x - currentVectorLeft.x, currentVectorRight.z - currentVectorLeft.z);
+
+        rb.AddForceAtPosition(transform.TransformDirection(toApplyRight), transform.TransformDirection(new Vector3(0.5f, rightHandVector.y, 0)), ForceMode.Force);
+        rb.AddForceAtPosition(transform.TransformDirection(toApplyLeft), transform.TransformDirection(new Vector3(-0.5f, leftHandVector.y, 0)), ForceMode.Force);
+
+        rb.AddForce(Vector3.down * 9.81f * gravityConstant * 1/distance.magnitude, ForceMode.Acceleration);
         
         rightHandVector = rightHand.action.ReadValue<Vector3>();
         leftHandVector = leftHand.action.ReadValue<Vector3>();
