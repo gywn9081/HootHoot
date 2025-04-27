@@ -28,7 +28,7 @@ public class testScript : MonoBehaviour
 
 
 
-    float tolerance = 2f;
+    float tolerance = 1f;
 
     [SerializeField] Transform stickTransform;
     [SerializeField] Transform thrusterTransform;
