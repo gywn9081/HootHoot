@@ -453,10 +453,10 @@ MonoBehaviour:
   width: 256
   depth: 256
   height: 206
-  scale: 35.241
+  scale: 72.8
   octaves: 4
-  persistence: 3.75
-  lacunarity: 0.33
+  persistence: 0.51
+  lacunarity: 2.36
   offset: {x: 0, y: 0}
   heightCurve:
     serializedVersion: 2
@@ -464,33 +464,33 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.2410761
-      value: 0.44016305
-      inSlope: 1.4254811
-      outSlope: 1.4254811
+      time: 0.09239122
+      value: 0.118405506
+      inSlope: 1.1072214
+      outSlope: 1.1072214
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.67139626
-      value: 0.067100644
-      inSlope: 0.66301495
-      outSlope: 0.66301495
+      time: 0.39449564
+      value: 0.1579069
+      inSlope: 0.062033847
+      outSlope: 0.062033847
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.9140625
-      value: 0.4618683
+      time: 0.9510498
+      value: 0.23950577
       inSlope: 0
       outSlope: 0
       tangentMode: 0

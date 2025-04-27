@@ -24,6 +24,7 @@ public class Terrain_generator : MonoBehaviour
     private Terrain terrain;
     private int lastDepth, lastWidth, lastHeight, lastOctaves;
     private float lastScale, lastPersistence, lastLacunarity, lastheightMultiplier;
+    private Vector2 lastOffset;
 
 
     void Start()
@@ -41,6 +42,7 @@ public class Terrain_generator : MonoBehaviour
         lastLacunarity = lacunarity;
         lastPersistence = persistence; 
         lastheightMultiplier = heightMultiplier;
+        lastOffset = offset;
     }
 
     TerrainData GenerateTerrain()
@@ -58,7 +60,7 @@ public class Terrain_generator : MonoBehaviour
     void Update()
     {
                 // Check if size parameters changed
-        if (depth != lastDepth || width != lastWidth || height != lastHeight || scale != lastScale || persistence != lastPersistence || octaves != lastOctaves || lacunarity != lastLacunarity || heightMultiplier != lastheightMultiplier)
+        if (depth != lastDepth || width != lastWidth || height != lastHeight || scale != lastScale || persistence != lastPersistence || octaves != lastOctaves || lacunarity != lastLacunarity || heightMultiplier != lastheightMultiplier || lastOffset != offset)
         {
             Debug.Log("Terrain size changed! Regenerating terrain...");
 
@@ -73,6 +75,7 @@ public class Terrain_generator : MonoBehaviour
             lastOctaves = octaves;
             lastLacunarity = lacunarity;
             lastheightMultiplier = heightMultiplier;
+            lastOffset = offset;
         }
     }
 
@@ -87,71 +90,6 @@ public class Terrain_generator : MonoBehaviour
         }
         return heights;
     }
-
-    // private float CalculateTiledHeight(float x, float y)
-    // {
-    //     float amplitude = 1;
-    //     float frequency = 1;
-    //     float noiseHeight = 0;
-    //     for (int i = 0; i < octaves; i++)
-    //     {
-    //         // Wrap x and z into angles
-    //         float xAngle = ((x + offset.x) / (width - 1)) * 2f * Mathf.PI * frequency;
-    //         float zAngle = ((z + offset.y) / (depth - 1)) * 2f * Mathf.PI * frequency;
-
-    //         // Circle mapping for seamless tiling
-    //         float sampleX = Mathf.Cos(xAngle) * scale;
-    //         float sampleY = Mathf.Sin(xAngle) * scale;
-    //         float sampleZ = Mathf.Cos(zAngle) * scale;
-    //         float sampleW = Mathf.Sin(zAngle) * scale;
-
-    //         // 4D noise lookup
-    //         float perlinValue = NotSoSimplePerlin.Noise4D(sampleX, sampleY, sampleZ, sampleW) * 2 - 1;
-
-    //         noiseHeight += perlinValue * amplitude;
-
-    //         amplitude *= persistence;
-    //         frequency *= lacunarity;
-    //     }
-
-    //     noiseHeight = heightCurve.Evaluate((noiseHeight + 1) / 2f) * heightMultiplier;
-    //     return noiseHeight;
-
-
-
-
-    //     // float sampleX, sampleZ, perlinValue;
-
-    //     // for (int i = 0; i < octaves; i++)
-    //     // {
-    //     //     sampleX = (x + offset.x) / scale * frequency;
-    //     //     sampleZ = (z + offset.y) / scale * frequency;
-
-    //     //     perlinValue = NotSoSimplePerlin.Noise(sampleX, sampleZ) * 2 - 1;
-    //     //     noiseHeight += perlinValue * amplitude;
-
-    //     //     amplitude *= persistence;
-    //     //     frequency *= lacunarity;
-    //     // }
-
-    //     // noiseHeight = heightCurve.Evaluate((noiseHeight + 1) / 2f) * heightMultiplier;
-    //     // return noiseHeight;
-    //     // // Angle goes from 0 to 2*PI across the terrain width/height
-    //     // float xAngle = (x / (width - 1)) * 2f * Mathf.PI;
-    //     // float yAngle = (y / (height - 1)) * 2f * Mathf.PI;
-
-    //     // // Radius controls how big the loops are
-    //     // float radius = scale;
-
-    //     // // Map angles into a seamless circle
-    //     // float sampleX = Mathf.Cos(xAngle) * radius;
-    //     // float sampleY = Mathf.Sin(xAngle) * radius;
-    //     // float sampleZ = Mathf.Cos(yAngle) * radius;
-    //     // float sampleW = Mathf.Sin(yAngle) * radius;
-
-    //     // // You need a noise function that can take 4D input here
-    //     // return NotSoSimplePerlin.Noise4D(sampleX, sampleY, sampleZ, sampleW);
-    // }
 
     private float CalculateHeight(int x, int z)
     {
