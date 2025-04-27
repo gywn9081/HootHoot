@@ -9,7 +9,7 @@
                     "name": "RightHandPos",
                     "type": "Value",
                     "id": "194d58c2-8c29-40eb-b51b-1684c7e1a03b",
-                    "expectedControlType": "Quaternion",
+                    "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -18,7 +18,7 @@
                     "name": "RightHandRot",
                     "type": "Value",
                     "id": "9b7c4505-25af-4613-b63a-ed3af4d714ad",
-                    "expectedControlType": "Vector3",
+                    "expectedControlType": "Quaternion",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -35,8 +35,8 @@
                 {
                     "name": "LeftHandRot",
                     "type": "Value",
-                    "id": "225456ff-1f5c-4a3b-82a8-b323ea6f2314",
-                    "expectedControlType": "Vector3",
+                    "id": "cec6b78d-db31-4018-ad3a-41439e05b0b6",
+                    "expectedControlType": "Quaternion",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -83,7 +83,7 @@
                 },
                 {
                     "name": "Quaternion Fallback",
-                    "id": "233951a7-733d-42ea-8848-ba520420a434",
+                    "id": "8309e869-1308-46c1-ba0e-212df83a2412",
                     "path": "QuaternionFallback",
                     "interactions": "",
                     "processors": "",
@@ -94,22 +94,22 @@
                 },
                 {
                     "name": "first",
-                    "id": "fdf10e5a-1cdc-4e5c-9a1a-10625c62568f",
-                    "path": "<XRController>{RightHand}/deviceRotation",
+                    "id": "fdcc1fb1-6b7d-44a7-a927-75ff0ff1b8e2",
+                    "path": "<XRController>{LeftHand}/deviceRotation",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";XR",
                     "action": "LeftHandRot",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "second",
-                    "id": "12d24c7e-cb15-4abb-ab30-5d4c7152a2a1",
-                    "path": "<XRHandDevice>{RightHand}/deviceRotation",
+                    "id": "48249ae2-9758-4fde-ad89-f6905ec613eb",
+                    "path": "<XRHandDevice>{LeftHand}/deviceRotation",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";XR",
                     "action": "LeftHandRot",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -127,11 +127,11 @@
                 },
                 {
                     "name": "first",
-                    "id": "232a2fc7-7d33-44cb-bc42-5c8398a4b1f3",
-                    "path": "<XRController>{LeftHand}/deviceRotation",
+                    "id": "05afa54d-f5de-404f-95de-fd5a113d1c3f",
+                    "path": "<XRController>{RightHand}/deviceRotation",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";XR",
                     "action": "RightHandRot",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -139,44 +139,11 @@
                 {
                     "name": "second",
                     "id": "807925e1-705e-47e9-a858-b2ea23a834a3",
-                    "path": "<XRHandDevice>{LeftHand}/deviceRotation",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RightHandRot",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "first",
-                    "id": "88d8b433-9be4-4dfe-9edc-f2654720c28c",
-                    "path": "<XRController>{RightHand}/devicePosition",
+                    "path": "<XRHandDevice>{RightHand}/deviceRotation",
                     "interactions": "",
                     "processors": "",
                     "groups": ";XR",
-                    "action": "RightHandPos",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "second",
-                    "id": "286828fa-5554-4291-b83b-d0e5f269bfcf",
-                    "path": "<XRHandDevice>{RightHand}/devicePosition",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RightHandPos",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "third",
-                    "id": "8768e7da-d0af-4db1-97da-983342ec1f04",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RightHandPos",
+                    "action": "RightHandRot",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -206,17 +173,6 @@
                     "name": "second",
                     "id": "09194891-1739-44c5-94e9-a88226c5487b",
                     "path": "<XRHandDevice>{LeftHand}/devicePosition",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "LeftHandPos",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "third",
-                    "id": "4f8cf336-4a08-490f-ac7f-937d304a3f23",
-                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -258,9 +214,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "second",
-                    "id": "4ba2a1f4-9e68-47ce-b4ad-dc2a6bebac80",
-                    "path": "<XRHandDevice>{LeftHand}/gripPosition",
+                    "name": "Second",
+                    "id": "fdf6b181-52d8-4a24-9d18-541242554cb0",
+                    "path": "<HandInteraction>{LeftHand}/graspFirm",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -269,9 +225,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "third",
-                    "id": "c8d6a31e-f761-45c1-8c87-f34c0a359031",
-                    "path": "",
+                    "name": "Second",
+                    "id": "6f84f59f-37f5-4807-bc2f-e5e123d31094",
+                    "path": "<HandInteraction>{LeftHand}/pinchTouched",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -281,7 +237,7 @@
                 },
                 {
                     "name": "Button Fallback",
-                    "id": "e4a43926-c20a-4fe9-8d6d-f92a36414169",
+                    "id": "73f8c3e0-fe9b-4dbd-80ca-4db83bbbd46c",
                     "path": "ButtonFallback",
                     "interactions": "",
                     "processors": "",
@@ -292,7 +248,7 @@
                 },
                 {
                     "name": "first",
-                    "id": "44ca6b90-5f0b-42f6-be40-0c76016e63cd",
+                    "id": "abb5b6f6-b545-42ff-ab7f-10eb1833498d",
                     "path": "<XRController>{RightHand}/{GripButton}",
                     "interactions": "",
                     "processors": "",
@@ -302,9 +258,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "second",
-                    "id": "c35681fb-dd9a-4ef7-a221-cd111c6fb47f",
-                    "path": "<XRHandDevice>{RightHand}/gripPosition",
+                    "name": "Second",
+                    "id": "12adc4be-2fa7-49af-a1b0-5b3b1d3d46f6",
+                    "path": "<HandInteraction>{RightHand}/graspFirm",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -313,9 +269,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "third",
-                    "id": "6b894e9f-e67e-464b-ba01-3149b0103a22",
-                    "path": "",
+                    "name": "Second",
+                    "id": "a26c5430-184a-4005-b99e-253e643a235d",
+                    "path": "<HandInteraction>{RightHand}/pinchTouched",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -1,8 +1,8 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-
-public class PlanePhysics : MonoBehaviour{
+using System.Collections.Generic;
+using System;
+public class PlanePhysics : MonoBehaviour
+{
     public class LinearInterpolationTree{
         private List<(float, float)> tree;
         private int treeSize;
@@ -77,7 +77,7 @@ public class PlanePhysics : MonoBehaviour{
     private LinearInterpolationTree AngleToCLTree;
     private LinearInterpolationTree CLToDragTree;
 
-    private PlanePhysics(){
+    public PlanePhysics(){
         AngleToCLTree = new LinearInterpolationTree(ANGLE_CL_GRAPH);
         CLToDragTree = new LinearInterpolationTree(CL_DRAG_GRAPH);
     }
@@ -119,8 +119,8 @@ public class PlanePhysics : MonoBehaviour{
 
 
     
-    public Vector3 getForceVector(float angleOfAttack, float speed, float mass, float thrustPercent, float elevation, float temp){
-        float density = getDensity(temp, elevation);
+    public Vector3 getForceVector(float angleOfAttack, float speed, float mass, float thrustPercent, float elevation){
+        float density = getDensity(getTemperature(elevation), elevation);
     
         float thrust = getThrust(thrustPercent);
 
@@ -133,6 +133,10 @@ public class PlanePhysics : MonoBehaviour{
         Vector3 vectorSummation = new Vector3(0, lift - gravity, thrust - drag);
 
         return vectorSummation;
+    }
+
+    public float getTemperature(float elevation){
+        return 15f - (0.0065f * elevation);
     }
 
     public Vector3 getRotationVector(float roll, float pitch, float yaw, float mass){
