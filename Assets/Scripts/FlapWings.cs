@@ -3,14 +3,13 @@ using UnityEngine.InputSystem;
 
 public class FlapWings : MonoBehaviour
 {
-    // TODO - tuck in arms = fall, out = not fall
     [SerializeField] InputActionReference leftHand;
     [SerializeField] InputActionReference rightHand;
 
     [SerializeField] float thrustConstant = 10f;
-    [SerializeField] float gravityConstant = 5f;
+    [SerializeField] float gravityConstant = 0.2f;
 
-    [SerializeField] Rigidbody rb;
+    [SerializeField] Transform bodyTransform;
     Vector3 rightHandVector;
     Vector3 leftHandVector;
     
@@ -58,19 +57,23 @@ public class FlapWings : MonoBehaviour
 
         Vector2 distance = new Vector2(currentVectorRight.x - currentVectorLeft.x, currentVectorRight.z - currentVectorLeft.z);
 
-        rb.AddForceAtPosition(transform.TransformDirection(toApplyRight), transform.TransformDirection(new Vector3(0.5f, rightHandVector.y, 0)), ForceMode.Force);
-        rb.AddForceAtPosition(transform.TransformDirection(toApplyLeft), transform.TransformDirection(new Vector3(-0.5f, leftHandVector.y, 0)), ForceMode.Force);
+        bodyTransform.position += (toApplyRight + toApplyLeft) * Time.deltaTime;
+
+        if(distance.magnitude == 0f)
+        {
+            bodyTransform.position += Vector3.up * 9.81f * gravityConstant * 20 * Time.deltaTime;
+        }
+        else
+        {
+            bodyTransform.position += Vector3.down * 9.81f * gravityConstant * 1/distance.magnitude * Time.deltaTime;
+        }
         
         rightHandVector = rightHand.action.ReadValue<Vector3>();
         leftHandVector = leftHand.action.ReadValue<Vector3>();
 
-        if(distance.magnitude == 0f)
+        if(bodyTransform.position.y < 50f)
         {
-            rb.AddForce(Vector3.up * 9.81f * gravityConstant * 20, ForceMode.Force);
-        }
-        else
-        {
-            rb.AddForce(Vector3.down * 9.81f * gravityConstant * 1/distance.magnitude, ForceMode.Force);
+            bodyTransform.position = new Vector3(bodyTransform.position.x, -5f, bodyTransform.position.z);
         }
     }
 }
