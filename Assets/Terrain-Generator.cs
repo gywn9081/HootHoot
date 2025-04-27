@@ -61,7 +61,6 @@ public class TerrainGenerator : MonoBehaviour
         return NotSoSimplePerlin.Noise(xcoord, ycoord);
     }
 
-    
 
     // // Update is called once per frame
     void Update()
