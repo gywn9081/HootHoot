@@ -60,10 +60,17 @@ public class FlapWings : MonoBehaviour
 
         rb.AddForceAtPosition(transform.TransformDirection(toApplyRight), transform.TransformDirection(new Vector3(0.5f, rightHandVector.y, 0)), ForceMode.Force);
         rb.AddForceAtPosition(transform.TransformDirection(toApplyLeft), transform.TransformDirection(new Vector3(-0.5f, leftHandVector.y, 0)), ForceMode.Force);
-
-        rb.AddForce(Vector3.down * 9.81f * gravityConstant * 1/distance.magnitude, ForceMode.Acceleration);
         
         rightHandVector = rightHand.action.ReadValue<Vector3>();
         leftHandVector = leftHand.action.ReadValue<Vector3>();
+
+        if(distance.magnitude == 0f)
+        {
+            rb.AddForce(Vector3.up * 9.81f * gravityConstant * 20, ForceMode.Force);
+        }
+        else
+        {
+            rb.AddForce(Vector3.down * 9.81f * gravityConstant * 1/distance.magnitude, ForceMode.Force);
+        }
     }
 }
